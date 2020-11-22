@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useEffect, useState } from "react";
+import PostFeed from "./components/PostFeed";
+import CreatePost from "./components/CreatePost";
+
+// fetch all posts
+// display all posts
+// create new post
 
 function App() {
+  const [status, setStatus] = useState("idle");
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setStatus("fetching");
+      const response = await fetch("http://localhost:4000/api/posts");
+      const data = await response.json();
+      setData(data);
+      setStatus("fetched");
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="app-grid">
+        <PostFeed data={data} />
+        <CreatePost />
+      </div>
     </div>
   );
 }

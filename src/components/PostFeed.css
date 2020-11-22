@@ -1,0 +1,4 @@
+.post-feed-grid {
+  display: grid;
+  gap: 10px;
+}
