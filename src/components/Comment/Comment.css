@@ -1,0 +1,17 @@
+.comment-grid {
+  display: grid;
+  grid-template-areas:
+    "author date"
+    "body body";
+  gap: 10px;
+}
+
+#author {
+  grid-area: author;
+}
+#date {
+  grid-area: date;
+}
+#body {
+  grid-area: body;
+}

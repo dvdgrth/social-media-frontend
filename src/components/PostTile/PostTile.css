@@ -1,0 +1,7 @@
+.post-tile-container {
+  border: 1px solid black;
+  padding: 5px;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+}

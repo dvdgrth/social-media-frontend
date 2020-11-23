@@ -1,0 +1,25 @@
+.post-container {
+  display: grid;
+  grid-template-areas:
+    "title title"
+    "author date"
+    "body body"
+    "comments comments";
+  gap: 10px;
+}
+
+#title {
+  grid-area: title;
+}
+#author {
+  grid-area: author;
+}
+#date {
+  grid-area: date;
+}
+#body {
+  grid-area: body;
+}
+.comments {
+  grid-area: comments;
+}

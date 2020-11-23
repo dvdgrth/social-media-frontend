@@ -1,5 +1,5 @@
 import React from "react";
-import Post from "./Post";
+import PostTile from "../PostTile/PostTile";
 import "./PostFeed.css";
 
 function PostFeed(props) {
@@ -8,7 +8,7 @@ function PostFeed(props) {
       <h1>All Posts:</h1>
       <div className="post-feed-grid">
         {props.data.map((item) => {
-          return <Post key={item._id} postData={item} />;
+          return <PostTile key={item._id} postData={item} />;
         })}
       </div>
     </div>
