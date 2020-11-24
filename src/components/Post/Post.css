@@ -4,6 +4,7 @@
     "title title"
     "author date"
     "body body"
+    ". delete"
     "comments comments";
   gap: 10px;
 }
@@ -22,4 +23,7 @@
 }
 .comments {
   grid-area: comments;
+}
+#delete {
+  grid-area: delete;
 }

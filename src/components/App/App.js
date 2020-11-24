@@ -3,53 +3,42 @@ import { useEffect, useState } from "react";
 import PostFeed from "../PostFeed/PostFeed";
 import Post from "../Post/Post";
 import CreatePost from "../CreatePost/CreatePost";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-
-// fetch all posts
-// display all posts
-// create new post
+import { Route } from "react-router-dom";
 
 function App() {
-  const [status, setStatus] = useState("idle");
+  const [status, setStatus] = useState("reload");
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    console.log("INSIDE USE EFFEKT");
     const fetchData = async () => {
-      setStatus("fetching");
       const response = await fetch("http://localhost:4000/api/posts");
       const data = await response.json();
-      setData(data);
       setStatus("fetched");
+      setData(data);
     };
-
     fetchData();
   }, []);
 
   return (
-    <Router>
-      <div>
-        <div className="app-grid">
+    <div>
+      <div className="app-grid">
+        <Route exact={true} path="/" render={() => <PostFeed data={data} />} />
+        {status === "fetched" && (
           <Route
             exact={true}
-            path="/"
-            render={() => <PostFeed data={data} />}
+            path="/:postId"
+            render={(props) => {
+              const post = data.find((post) => {
+                return post._id === props.match.params.postId;
+              });
+              return <Post postData={post} />;
+            }}
           />
-          {status === "fetched" && (
-            <Route
-              exact={true}
-              path="/:postId"
-              render={(props) => {
-                const post = data.find((post) => {
-                  return post._id === props.match.params.postId;
-                });
-                return <Post postData={post} />;
-              }}
-            />
-          )}
-          <CreatePost />
-        </div>
+        )}
+        <CreatePost />
       </div>
-    </Router>
+    </div>
   );
 }
 

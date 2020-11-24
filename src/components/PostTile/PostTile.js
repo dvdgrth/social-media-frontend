@@ -16,7 +16,7 @@ const PostTile = (props) => {
   return (
     <div className="post-tile-container" onClick={clickHandler}>
       <div>{props.postData.title}</div>
-      <div>{props.postData.author}</div>
+      <div>{props.postData.author.name}</div>
       <div>{new Date(props.postData.date).toLocaleDateString()}</div>
       {/* <div>{props.postData.body}</div> */}
     </div>
